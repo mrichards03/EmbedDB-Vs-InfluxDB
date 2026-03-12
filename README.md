@@ -13,27 +13,27 @@ It is based on the scripts and data formats currently present in this workspace.
 
 ### Core files used for the experiments
 
-- `../insert_fake_data.c`  
+- `insert_fake_data.c`  
 	Inserts 4000 temperature points into InfluxDB (`temperature_db`, measurement `temperature`).
-- `../temperature_alert.tick`  
+- `temperature_alert.tick`  
 	Kapacitor TICKscript writing alert output into InfluxDB measurement `alerts`.
-- `../temp_alert_listen.tick`  
+- `temp_alert_listen.tick`  
 	Kapacitor TICKscript that calls local listener executable and writes callback latency CSV.
-- `../alert_listener.c`
+- `alert_listener.c`
 	Consumes Kapacitor alert payload and writes `alert_log.csv` format.
-- `../../GitHub/EmbedDB/src/benchmarks/activeRulesBenchmark.h`  
+- `EmbedDB/src/benchmarks/activeRulesBenchmark.h`  
 	Emits EmbedDB benchmark CSV in the same schema expected by `analyzer.py`.
-- `../../GitHub/EmbedDB/src/desktopMain.c`  
+- `EmbedDB/src/desktopMain.c`  
 	Entrypoint used to select `WHICH_PROGRAM == 4` for `activeRulesBenchmark()`.
-- `../analyzer.py`  
+- `analyzer.py`  
 	Produces final metrics and plots used in analysis.
 
 ### Files present but not used in the final thesis write up
 
-- `../insert_influx.py` (uses DB `benchmark`, 2000 inserts, prints only)
-- `../insert_fake_data_batch.c`
-- `../tem_alert_batch.tick`
-- `../alert_listener_http.c`
+- `insert_influx.py` (uses DB `benchmark`, 2000 inserts, prints only)
+- `insert_fake_data_batch.c`
+- `tem_alert_batch.tick`
+- `alert_listener_http.c`
 
 These are other experiments like batch insert benchmarks and listeners for kapacitor post() instead of executible for kapacitor.
 
