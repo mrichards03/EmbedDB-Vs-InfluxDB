@@ -1,0 +1,12 @@
+dbrp "temperature_db"."autogen"
+stream
+    |from()
+        .measurement('temperature')
+    |window()
+        .periodCount(1000)
+        .everyCount(1)
+    |mean('value')
+        .as('average')
+    |alert()
+        .crit(lambda: "average" > 0)
+        .exec('C:\\Users\\richa\\OneDrive\\Documents\\influxdb\\alert_listener')

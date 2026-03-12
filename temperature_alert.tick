@@ -1,0 +1,17 @@
+dbrp "temperature_db"."autogen"
+stream
+    |from()
+        .measurement('temperature')
+    |window()
+        .periodCount(1000)
+        .everyCount(1)
+    |mean('value')
+        .as('average')
+    |eval(lambda: unixNano(now()), lambda: string("average"))  // Convert time to Unix nanoseconds
+        .as('kapacitor_time', 'average')
+        .tags('average')
+        .keep()
+    |influxDBOut()
+        .database('temperature_db')
+        .retentionPolicy('autogen')
+        .measurement('alerts')
